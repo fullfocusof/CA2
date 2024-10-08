@@ -1,0 +1,13 @@
+﻿  EncryptingInterraction.cpp
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(68,15): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(69,15): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(70,15): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(132,13): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(132,37): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(169,13): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(169,37): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(205,11): warning C4244: инициализация: преобразование "__int64" в "int", возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(231,11): warning C4244: инициализация: преобразование "__int64" в "int", возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(243,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Projects\CompAlgebra\LR2\EncryptingInterraction.cpp(252,11): warning C4244: инициализация: преобразование "__int64" в "int", возможна потеря данных
+  LR2.vcxproj -> D:\Projects\CompAlgebra\LR2\x64\Debug\LR2.exe
