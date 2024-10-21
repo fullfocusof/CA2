@@ -37,17 +37,20 @@ int main()
 	system("cls");
 	while (!exitProg)
 	{
-		int x = 40, y = 12;
+		int x = 35, y = 8;
 		GoToXY(x, y);
 
 		vector<string> menu =
 		{
 			"Перезапустить программу",
-			"Установить сдвиг для шифра Цезаря",
+			"Установить сдвиг для простого шифра Цезаря",
+			"Установить сдвиг для обобщенного шифра Цезаря",
 			"Установить ключ для шифра Виженера",
 			"Установить систему подстановок для шифра Виженера",
-			"Ввод текста для зашифровки шифром Цезаря",
-			"Ввод текста для расшифровки шифром Цезаря",
+			"Ввод текста для зашифровки простым шифром Цезаря",
+			"Ввод текста для расшифровки простым шифром Цезаря",
+			"Ввод текста для зашифровки обобщенным шифром Цезаря",
+			"Ввод текста для расшифровки обобщенным шифром Цезаря",
 			"Ввод текста для расшифровки шифром Цезаря (большой текст)",
 			"Ввод текста для зашифровки шифром Виженера (ключевое слово)",
 			"Ввод текста для расшифровки шифром Виженера (ключевое слово)",
@@ -147,6 +150,34 @@ int main()
 					{
 						system("cls");
 
+						string input;
+						istringstream iss;
+						int a, b;
+						bool isCorrInput = false;
+						while (!isCorrInput)
+						{
+							system("cls");
+							cout << "Введите параметры a и b через пробел: ";
+							getline(cin, input);
+							istringstream iss(input);
+							iss >> a;
+							iss >> b;
+
+							if (gcd(a, b) == 1) isCorrInput = true;
+						}
+
+						test.setCoef(a);
+						test.setShift(b);
+						cout << endl << "Параметры успешно установлены";
+
+						printQuit();
+					}
+					break;
+
+					case 3:
+					{
+						system("cls");
+
 						string keyInput;
 						//bool isCorrInput = false;
 						cout << "Введите ключ: ";
@@ -174,7 +205,7 @@ int main()
 					}
 					break;
 
-					case 3:
+					case 4:
 					{
 						system("cls");
 
@@ -238,7 +269,7 @@ int main()
 					}
 					break;
 
-					case 4:
+					case 5:
 					{
 						system("cls");
 
@@ -265,7 +296,7 @@ int main()
 					}
 					break;
 
-					case 5:
+					case 6:
 					{
 						system("cls");
 		
@@ -290,7 +321,63 @@ int main()
 					}
 					break;
 
-					case 6:
+					case 7:
+					{
+						system("cls");
+
+						try
+						{
+							int shift = test.getShift();
+							int coef = test.getCoef();
+
+							string input, result;
+							cout << "Введите текст для зашифровки" << endl;
+							getline(cin, input);
+
+							result = test.getEncryptCaesarGeneralized(input);
+
+							system("cls");
+							cout << "Исходный текст:" << endl << input << endl << endl;
+							cout << "Зашифрованный текст:" << endl << result;
+						}
+						catch (const exception& ex)
+						{
+							cout << ex.what();
+						}
+
+						printQuit();
+					}
+					break;
+
+					case 8:
+					{
+						system("cls");
+
+						try
+						{
+							int shift = test.getShift();
+							int coef = test.getCoef();
+
+							string input, result;
+							cout << "Введите текст для расшифровки" << endl;
+							getline(cin, input);
+
+							result = test.getDecryptCaesarGeneralized(input);
+
+							system("cls");
+							cout << "Исходный текст:" << endl << input << endl << endl;
+							cout << "Зашифрованный текст:" << endl << result;
+						}
+						catch (const exception& ex)
+						{
+							cout << ex.what();
+						}
+
+						printQuit();
+					}
+					break;
+
+					case 9:
 					{
 						system("cls");
 
@@ -317,7 +404,7 @@ int main()
 					}
 					break;
 
-					case 7:
+					case 10:
 					{
 						system("cls");
 
@@ -344,7 +431,7 @@ int main()
 					}
 					break;
 
-					case 8:
+					case 11:
 					{
 						system("cls");
 
@@ -371,7 +458,7 @@ int main()
 					}
 					break;
 
-					case 9:
+					case 12:
 					{
 						system("cls");
 
@@ -398,7 +485,7 @@ int main()
 					}
 					break;
 
-					case 10:
+					case 13:
 					{
 						system("cls");
 
@@ -425,7 +512,7 @@ int main()
 					}
 					break;
 
-					case 11:
+					case 14:
 					{
 						exitProg = true;
 					}

@@ -1,5 +1,16 @@
 #include "EncryptingInterraction.h"
 
+int gcd(int a, int b)
+{
+	while (b != 0) 
+	{
+		int temp = b;
+		b = a % b;
+		a = temp;
+	}
+	return a;
+}
+
 void printQuit()
 {
 	cout << endl << endl << "Backspace - возврат в меню";
@@ -26,9 +37,11 @@ void printQuit()
 EncryptingInterraction::EncryptingInterraction()
 {
 	_shift = -1;
+	_coef = -1;
 	_key = "";
 	_subs = {};
 	isShiftSet = false;
+	isCoefSet = false;
 	isKeySet = false;
 	isSubsSet = false;
 }
@@ -43,6 +56,18 @@ void EncryptingInterraction::setShift(int shift)
 {
 	_shift = shift;
 	isShiftSet = true;
+}
+
+int EncryptingInterraction::getCoef()
+{
+	if (!isCoefSet) throw exception("Коэффициент не установлен");
+	return _coef;
+}
+
+void EncryptingInterraction::setCoef(int coef)
+{
+	_coef = coef;
+	isCoefSet = true;
 }
 
 string EncryptingInterraction::getKey()
@@ -92,6 +117,54 @@ string EncryptingInterraction::getEncryptCaesar(string text, int shift)
 string EncryptingInterraction::getEncryptCaesar(string text)
 {
 	return getEncryptCaesar(text, _shift);
+}
+
+string EncryptingInterraction::getEncryptCaesarGeneralized(string text, int shift)
+{
+	string temp = text;
+	string result;
+
+	for (auto& letter : temp)
+	{
+		if (letter >= 'A' && letter <= 'Z') letter = 'A' + ((_coef * (letter - 'A') + shift) % ENG);
+		else if (letter >= 'a' && letter <= 'z') letter = 'a' + ((_coef * (letter - 'a') + shift) % ENG);
+		result += letter;
+	}
+
+	return result;
+}
+
+string EncryptingInterraction::getEncryptCaesarGeneralized(string text)
+{
+	return getEncryptCaesarGeneralized(text, _shift);
+}
+
+int EncryptingInterraction::modInverse(int a, int m) 
+{
+	a = a % m;
+	for (int x = 1; x < m; x++) 
+	{
+		if ((a * x) % m == 1) return x;
+	}
+	return -1;
+}
+
+string EncryptingInterraction::getDecryptCaesarGeneralized(string text)
+{
+	int revCoef = modInverse(_coef, ENG);
+	if (_coef == -1) throw exception("Обратного элемента не существует");
+
+	string temp = text;
+	string result;
+
+	for (auto& letter : temp)
+	{
+		if (letter >= 'A' && letter <= 'Z') letter = 'A' + ((revCoef * ((letter - 'A') - _shift + ENG)) % ENG);
+		else if (letter >= 'a' && letter <= 'z') letter = 'a' + ((revCoef * ((letter - 'a') - _shift + ENG)) % ENG);
+		result += letter;
+	}
+
+	return result;
 }
 
 void EncryptingInterraction::getDecryptCaesar(string text)
